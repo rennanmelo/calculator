@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+#root {
+}
+
+.calculator {
+    display: inline-block;
+    max-width: 500px;
+    position: relative;
+}
+.result {
+    width: 100%;
+    height: 40px;
+    font-size: 24px;
+    float: left;
+    padding: 40px 30px 30px;
+    text-align: right;
+}
+
+.column-3 {
+    width: 75%;
+    display: inline-block;
+}
+
+.column-2 {
+    width: 50%;
+    display: inline-block;
+}
+
+.column-1 {
+    width: 25%;
+    display: inline-block;
+}
+
+.calc-button {
+    width: 100%;
+    height: 50px;
+    font-size: 22px;
+}
+
+.floaty-last {
+    position: absolute;
+    right: 30px;
+    z-index: 99;
+    top: 10px;
+    color: #aaaaaa;
+    font-size: 14px;
+}
