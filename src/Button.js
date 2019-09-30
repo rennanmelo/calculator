@@ -9,7 +9,6 @@ class Button extends Component {
             </div>
         )
     }
-
 }
 
 export default Button

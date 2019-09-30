@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Button from './Button'
 
-
 class App extends Component {
     constructor(props) {
         super(props)
@@ -13,8 +12,6 @@ class App extends Component {
         }
     }
     
-    // To do, calcular realizando podendo usar numeros negativos first e nao ocorrer erro quando clicar mais de uma vez nos operadores e/ou clicar neles depois do igual
-
     reset = () => {
         this.setState({current: "0", previous: [], nextIsReset: false})
     }
@@ -22,8 +19,7 @@ class App extends Component {
     addToCurrent = (symbol) => {
         if(['/', '*', '+', '-'].indexOf(symbol) > -1 ) {
             let {previous} = this.state
-            console.log(['/', '*', '+', '-'].indexOf(symbol))
-            previous.push(this.state.current + symbol)
+            previous.push(this.state.current, symbol)
             this.setState({previous, nextIsReset: true}) // previous: previous
         } else {
             if ((this.state.current === "0" && symbol !== '.') || this.state.nextIsReset) {
@@ -38,19 +34,18 @@ class App extends Component {
     addToCalculate = (symbol) => {
         let {current, previous, nextIsReset} = this.state
         if(previous.length > 0) {
-            current = eval(String(previous[previous.length - 1] + current))
+            current = eval((previous[0]) + (previous[1]) + (parseInt(current))).toString()
             this.setState({current, previous: [], nextIsReset: true})
+            console.log(parseInt(previous[1]))
         }
     }
-/*
+
     changeSign = () => {
         let {current, previous} = this.state
         if (current.includes('-')) {
             let sign = '+'
-            let newCurrent = sign.concat(current)
+            let newCurrent = current.replace('-', '')
             this.setState({current: newCurrent})
-
-            console.log("It's a negative number")
         } else {
             let sign = '-'
             let newCurrent = sign.concat(current)            
@@ -58,7 +53,7 @@ class App extends Component {
             this.setState({current: newCurrent})
         }
     }
-*/
+
     render() {
         const buttons = [
             {symbol: 'C', cols: 2, action: this.reset},
@@ -83,7 +78,7 @@ class App extends Component {
         return (
             <div className="calculator">
                 {this.state.current.length > 0 ?
-                    <div className="floaty-last">{this.state.previous[this.state.previous.length - 1]}</div>
+                    <div className="floaty-last">{this.state.previous[0]}{this.state.previous[1]}</div>
                 : null
                 }
 
